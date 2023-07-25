@@ -1,15 +1,24 @@
 <template>
-  <ul class="mt-32 fixed">
-    <router-link class="block px-24" v-for="(item, index) in options" :key="index" :to="{name:item.toLowerCase()}">
+  <ul class="border-r-2 h-[44rem] items-center pt-12">
+    <router-link
+      class="hover:green-800 block px-24 py-4 text-gray-500 font-semibold"
+      v-for="(item, index) in options"
+      :key="index"
+      :to="{ name: item.toLowerCase() }"
+    >
       {{ item.toUpperCase() }}
     </router-link>
   </ul>
-  <span class="py-6 border-l-2"></span>
 </template>
 
 <script>
 export default {
   props: ["options"],
+  methods:{
+    handleCllick(){
+      return true;
+    }
+  }
 };
 </script>
 

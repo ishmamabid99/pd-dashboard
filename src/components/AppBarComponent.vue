@@ -1,5 +1,7 @@
 <template>
-  <nav class="bg-white mb-10 shadow-md flex fixed w-screen top-0 shrink-0 justify-between px-10 py-2">
+  <nav
+    class="bg-white items-center justify-between shrink-0 fixed w-screen shadow-md flex px-10 py-2"
+  >
     <div>
       <img class="h-20 w-auto" :src="logo" />
     </div>
@@ -7,7 +9,7 @@
       <button
         v-for="(item, index) in options"
         :key="index"
-        class="text-green-700 font- text-2xl mx-4"
+        class="text-green-700 text-base md:text-2xl mx-4"
       >
         {{ item }}
       </button>

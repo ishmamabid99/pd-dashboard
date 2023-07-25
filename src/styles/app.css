@@ -4,8 +4,5 @@
 @tailwind utilities;
 
 body {
-  @apply text-xl;
-}
-html {
-  font-family: "IBM Plex Sans", sans-serif;
+  @apply text-base md:text-xl;
 }
