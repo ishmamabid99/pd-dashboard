@@ -1,143 +1,21 @@
 <template>
-    <div class="flex-row">
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-        Home
-    </div>
+  <div>
+    <card-component :showAttachments="showAttachments" :showComments="showComments"/>
+  </div>
 </template>
 
 <script>
-export default {};
+import CardComponent from "@/components/CardComponent.vue";
+export default {
+  components: { CardComponent },
+  data() {
+    return {
+      showComments: true,
+      showAttachments: true,
+    };
+  },
+};
 </script>
 
-<style></style>
+<style>
+</style>

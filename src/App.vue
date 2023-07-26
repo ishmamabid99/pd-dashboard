@@ -1,12 +1,11 @@
 <template>
-  <AppBarComponent :options="navOptions" :logo="logo" v-if="isRoutedPage" />
+  <app-bar-component :options="navOptions" :logo="logo" v-if="isRoutedPage" />
   <div class="flex gap-9 md:gap-16">
-    <SideBarComponent
-      v-if="screenSize === 'lg'"
-      class="h-96 w-fit fixed mt-44"
+    <side-bar-component
+      class="h-96 w-fit hidden fixed lg:block mt-44"
       :options="sideBarOptions"
     />
-    <div class="w-full h-screen mt-24 md:ml-96 md:mr-20">
+    <div class="w-full mt-24 lg:ml-96 lg:mr-20">
       <router-view />
     </div>
   </div>
@@ -18,38 +17,17 @@ import logo from "./assets/logo.png";
 export default {
   data() {
     return {
-      screenSize: "lg",
       logo: logo,
       navOptions: ["Login"],
-      sideBarOptions: ["Issues", "Tasks", "Learnings", "Post", "Profile"],
+      sideBarOptions: ["Tasks", "Issues", "Learnings", "Post", "Profile"],
     };
   },
   components: { AppBarComponent, SideBarComponent },
   computed: {
     isRoutedPage() {
-      console.log(this.$route.name);
       return this.$route.name === "error-page" ? false : true;
     },
-  },
-  mounted() {
-    this.checkScreenSize();
-    window.addEventListener("resize", this.checkScreenSize);
-  },
-  updated() {
-    console.log("updated");
-  },
-  unmounted() {
-    console.log("unmounted");
-    window.removeEventListener("resize", this.checkScreenSize);
-  },
-  methods: {
-    checkScreenSize() {
-      const width = window.innerWidth;
-      if (width >= 1024) this.screeSize = "lg";
-      else if (width <= 768) this.screenSize = "sm";
-      else this.screenSize = "md";
-    },
-  },
+  }
 };
 </script>
 <style>
@@ -57,7 +35,7 @@ export default {
   font-family: "IBM Plex Sans", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
+  text-align: left;
   color: #2c3e50;
 }
 </style>

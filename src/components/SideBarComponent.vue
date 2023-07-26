@@ -1,7 +1,7 @@
 <template>
-  <ul class="border-r-2 h-[44rem] items-center pt-12">
+  <ul class="border-r-2 h-[44rem] items-center pt-16 px-24">
     <router-link
-      class="hover:green-800 block px-24 py-4 text-gray-500 font-semibold"
+      class="hover:text-green-700 block py-4 font-semibold opacity-70"
       v-for="(item, index) in options"
       :key="index"
       :to="{ name: item.toLowerCase() }"
@@ -14,12 +14,16 @@
 <script>
 export default {
   props: ["options"],
-  methods:{
-    handleCllick(){
+  methods: {
+    handleCllick() {
       return true;
-    }
-  }
+    },
+  },
 };
 </script>
 
-<style></style>
+<style>
+.router-link-exact-active {
+  @apply text-green-700 
+}
+</style>
