@@ -1,13 +1,14 @@
 <template>
-  Issues
+  <card-component :show-attachments="false" :show-comments="false"/>
 </template>
 
 <script>
-export default {
+import CardComponent from "@/components/CardComponent.vue";
 
-}
+CardComponent;
+export default {
+  components: { CardComponent },
+};
 </script>
 
-<style>
-
-</style>
+<style></style>

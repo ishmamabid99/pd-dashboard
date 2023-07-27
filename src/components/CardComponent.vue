@@ -4,7 +4,7 @@
       <div>
         <div ref="hi" class="items-center justify-center">
           <span class="text-green-700 text-2xl sm:text-4xl">#hii</span>
-          <span class="float-right text-green-600">- Ishmam Abid</span>
+          <span class="float-right text-green-600">@Ishmam Abid</span>
         </div>
         <div
           ref="contentContainer"
@@ -27,6 +27,7 @@
           >show less</span
         >
         <div
+          @click="toggleModalShow"
           v-if="showAttachments"
           class="float-right mt-4 text-gray-500 text-sm sm:text-base cursor-pointer hover:text-green-700"
         >
@@ -79,7 +80,9 @@
       </div>
     </div>
   </div>
-  <modal-component/>
+  <modal-component @close="toggleModalShow" v-if="showModal">
+    <template v-slot:title>Modal </template>
+  </modal-component>
 </template>
 
 <script>
@@ -89,6 +92,7 @@ export default {
   props: ["showAttachments", "showComments"],
   data() {
     return {
+      showModal: false,
       showMore: false,
       showLess: false,
       content:
@@ -121,6 +125,9 @@ export default {
   methods: {
     toggleShowComment() {
       this.showCommentData = !this.showCommentData;
+    },
+    toggleModalShow() {
+      this.showModal = !this.showModal;
     },
     isTextOverflowed(element, lines) {
       if (!element) return false;

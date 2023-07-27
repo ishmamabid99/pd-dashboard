@@ -5,7 +5,7 @@
       class="h-96 w-fit hidden fixed lg:block mt-44"
       :options="sideBarOptions"
     />
-    <div class="w-full mt-24 lg:ml-96 lg:mr-20">
+    <div class="w-full mt-32 lg:ml-96 lg:mr-20">
       <router-view />
     </div>
   </div>
@@ -27,7 +27,7 @@ export default {
     isRoutedPage() {
       return this.$route.name === "error-page" ? false : true;
     },
-  }
+  },
 };
 </script>
 <style>
@@ -37,5 +37,8 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: left;
   color: #2c3e50;
+}
+::-webkit-scrollbar {
+  width: 0; /* Adjust the width as needed */
 }
 </style>
