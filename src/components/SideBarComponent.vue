@@ -1,7 +1,7 @@
 <template>
   <ul class="border-r-2 h-[44rem] items-center pt-16 px-24">
     <router-link
-      class="hover:text-green-700 block py-4 font-semibold opacity-70"
+      class="hover:text-green-700 block py-4 text-xl font-semibold opacity-70"
       v-for="(item, index) in options"
       :key="index"
       :to="{ name: item.toLowerCase() }"

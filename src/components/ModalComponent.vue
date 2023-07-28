@@ -21,7 +21,7 @@
       <!-- Close button -->
       <button
         @click="handleClose"
-        class="float-right mt-16 px-4 py-2 bg-gray-500 text-white rounded"
+        class="float-right mt-16 px-4 py-2 bg-gray-500 shadow-lg text-white rounded"
       >
         Close
       </button>

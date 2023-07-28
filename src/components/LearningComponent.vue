@@ -194,10 +194,24 @@ export default {
   },
   computed: {
     filteredTags() {
-      return this.tagsArray.slice(0, this.tagsLength);
+      const nonEmptyTags = [
+        this.filterAdvancedTags,
+        this.filterMediumTags,
+        this.filterBeginerTags,
+      ].filter((arr) => arr.length > 0);
+      const noOfNonEmptyTags = nonEmptyTags.length;
+      const elementsPerArray = Math.floor(this.tagsLength / noOfNonEmptyTags);
+      const reminder = this.tagsLength % noOfNonEmptyTags;
+      const newArray = [];
+      nonEmptyTags.forEach((arr, index) => {
+        const elementsToTake =
+          index < reminder ? elementsPerArray + 1 : elementsPerArray;
+        newArray.push(...arr.slice(0, elementsToTake));
+      });
+      return newArray;
     },
     filterAdvancedTags() {
-      return this.tagsArray.filter((tag) => tag.staus === "adv");
+      return this.tagsArray.filter((tag) => tag.status === "adv");
     },
     filterMediumTags() {
       return this.tagsArray.filter((tag) => tag.status === "md");
