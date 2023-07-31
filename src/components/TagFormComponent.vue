@@ -111,11 +111,10 @@
             id="status"
             class="text-base outline-0 p-2 bg-white border-2 rounded-lg w-full"
           >
-            <option value="bg">Beginner</option>
+            <option selected value="bg">Beginner</option>
             <option value="md">Medium</option>
             <option value="adv">Advance</option>
           </select>
-          <button></button>
         </div>
       </form>
     </template>
@@ -132,8 +131,8 @@ export default {
   data() {
     return {
       newTitle: "",
-      newStatus: "",
-      openModal: true,
+      newStatus: "bg",
+      openModal: false,
       deleteIcon: deleteIcon,
       plusIcon: plusIcon,
       selectedTags: [],
@@ -148,11 +147,10 @@ export default {
     },
     handleTagFormData() {
       this.toggleModal();
-      console.log(this.newTitle);
+      console.log(this.newTitle + this.newStatus);
     },
   },
 };
 </script>
 
-<style>
-</style>
+<style></style>

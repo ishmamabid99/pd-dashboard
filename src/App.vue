@@ -1,9 +1,17 @@
 <template>
-  <app-bar-component :options="navOptions" :logo="logo" v-if="isRoutedPage" />
+  <app-bar-component
+    @showSidebar="toggleSidebar"
+    :options="navOptions"
+    :logo="logo"
+    v-if="isRoutedPage"
+  />
   <div class="flex gap-9 md:gap-16">
     <side-bar-component
-      class="h-96 w-fit hidden fixed lg:block mt-44"
+      @closeSidebar="toggleSidebar"
+      :class="sidebar ? 'block' : 'hidden'"
+      class="h-96 w-fit fixed z-50 lg:block lg:mt-44"
       :options="sideBarOptions"
+      v-if="isRoutedPage"
     />
     <div class="w-full mt-32 lg:ml-96 lg:mr-20">
       <router-view />
@@ -17,15 +25,29 @@ import logo from "./assets/logo.png";
 export default {
   data() {
     return {
+      sidebar: false,
       logo: logo,
       navOptions: ["Login"],
-      sideBarOptions: ["Tasks", "Issues", "Learnings", "Post", "Profile"],
+      sideBarOptions: [
+        "Dashboard",
+        "Blogs",
+        "Tasks",
+        "Issues",
+        "Learnings",
+        "Post",
+        "Profile",
+      ],
     };
   },
   components: { AppBarComponent, SideBarComponent },
   computed: {
     isRoutedPage() {
       return this.$route.name === "error-page" ? false : true;
+    },
+  },
+  methods: {
+    toggleSidebar() {
+      this.sidebar = !this.sidebar;
     },
   },
 };

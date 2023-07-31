@@ -29,7 +29,7 @@
         </button>
         <button
           v-if="tagFormComponent == true"
-          @click="handleClose"
+          @click="handleSaveAndClose"
           class="float-right mt-16 px-4 py-2 bg-green-600 shadow-lg text-white rounded-lg"
         >
           Save

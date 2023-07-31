@@ -2,11 +2,19 @@
   <div class="px-10 sm:px-12 flex sm:mt-12 gap-2 sm:gap-4 w-fit">
     <button
       @click="handleClick"
+      :class="{ 'text-white bg-green-600': selectedButton.button0 }"
+      name="zeroButton"
+      class="outline-0 shadow-lg font-semibold border-1 text-green-600 sm:w-32 bg-gray-50 rounded-xl px-4 py-1 gap-2"
+    >
+      + Blog
+    </button>
+    <button
+      @click="handleClick"
       :class="{ 'text-white bg-green-600': selectedButton.button1 }"
       name="firstButton"
       class="outline-0 shadow-lg font-semibold border-1 text-green-600 sm:w-32 bg-gray-50 rounded-xl px-4 py-1 gap-2"
     >
-      + Issues
+      + Issue
     </button>
     <button
       @click="handleClick"
@@ -25,8 +33,12 @@
       + Learning
     </button>
   </div>
-  <form-component v-if="selectedButton.button1" :imageUpload="true" />
-  <form-component v-else-if="selectedButton.button2" />
+  <form-component v-if="selectedButton.button0 == true" :imageUpload="true" />
+  <form-component
+    v-else-if="selectedButton.button1 == true"
+    :imageUpload="true"
+  />
+  <form-component v-else-if="selectedButton.button2 == true" />
   <tag-form-component v-else :tagsArray="tagsArray" />
 </template>
 
@@ -39,7 +51,8 @@ export default {
   data() {
     return {
       selectedButton: {
-        button1: true,
+        button0: true,
+        button1: false,
         button2: false,
         button3: false,
       },
@@ -49,15 +62,23 @@ export default {
   methods: {
     handleClick(e) {
       const buttonName = e.target.name;
-      if (buttonName === "firstButton") {
+      if (buttonName === "zeroButton") {
+        this.selectedButton.button0 = true;
+        this.selectedButton.button1 = false;
+        this.selectedButton.button2 = false;
+        this.selectedButton.button3 = false;
+      } else if (buttonName === "firstButton") {
+        this.selectedButton.button0 = false;
         this.selectedButton.button1 = true;
         this.selectedButton.button2 = false;
         this.selectedButton.button3 = false;
       } else if (buttonName === "secondButton") {
+        this.selectedButton.button0 = false;
         this.selectedButton.button1 = false;
         this.selectedButton.button2 = true;
         this.selectedButton.button3 = false;
       } else {
+        this.selectedButton.button0 = false;
         this.selectedButton.button1 = false;
         this.selectedButton.button2 = false;
         this.selectedButton.button3 = true;
@@ -65,7 +86,7 @@ export default {
     },
   },
   mounted() {
-    this.selectedButton.button1 = true;
+    this.selectedButton.button0 = true;
   },
 };
 </script>

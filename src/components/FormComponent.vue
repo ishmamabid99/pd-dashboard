@@ -16,7 +16,7 @@
       for="content"
       class="text-green-700 text-base sm:text-xl font-semibold"
     >
-      Issue:
+      Description:
     </label>
     <textarea
       id="content"
@@ -24,6 +24,12 @@
       class="border-2 p-4 w-full mb-10 rounded-lg border-gray-400 focus:border-green-700 outline-0"
       placeholder="#Add a short description"
     />
+    <label
+      for="tag-component"
+      class="text-green-700 text-base sm:text-xl font-semibold"
+      >Select tags from below:</label
+    >
+    <div id="tag-component"></div>
     <div v-if="imageUpload">
       <div>
         <span class="text-green-700 text-base sm:text-xl font-semibold"

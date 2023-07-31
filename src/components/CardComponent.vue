@@ -1,10 +1,32 @@
 <template>
   <div class="m-4 sm:mt-12">
     <div class="bg-gray-50 pt-12 pb-16 px-12 shadow-md">
-      <div>
-        <div ref="hi" class="items-center justify-center">
-          <span class="text-green-700 text-2xl sm:text-4xl">#hii</span>
-          <span class="float-right text-green-600">@Ishmam Abid</span>
+      <div v-if="editView == true" class="flex flex-row-reverse gap-4 mb-6">
+        <div
+          v-if="editMode === false"
+          class="cursor-pointer shadow-2xl rounded-full border-1 p-2 hover:bg-gray-300 bg-gray-200"
+        >
+          <img class="h-8 w-8" :src="trashIcon" />
+        </div>
+        <div
+          v-if="editMode === false"
+          @click="enableEdit"
+          class="cursor-pointer shadow-2xl rounded-full border-1 p-2 hover:bg-gray-300 bg-gray-200"
+        >
+          <img class="h-6 w-6 m-1" :src="editIcon" />
+        </div>
+        <div
+          v-if="editMode === true"
+          @click="enableEdit"
+          class="cursor-pointer shadow-2xl rounded-full border-1 p-2 hover:bg-gray-300 bg-gray-200"
+        >
+          <img class="h-6 w-6 m-1" :src="saveIcon" />
+        </div>
+      </div>
+      <div v-if="editMode == false">
+        <div class="items-center justify-center">
+          <span class="text-green-700 text-2xl sm:text-4xl">#{{ title }}</span>
+          <span class="float-right text-green-600">@{{ author }}</span>
         </div>
         <div
           ref="contentContainer"
@@ -34,6 +56,33 @@
           ({{ attachments }}) attachments
         </div>
       </div>
+      <form v-if="editMode == true" @submit.prevent>
+        <label
+          for="title"
+          class="text-green-700 text-base sm:text-xl font-semibold"
+          >Title:</label
+        >
+        <input
+          id="title"
+          type="text"
+          :value="title"
+          class="py-2 mb-10 border-2 border-gray-400 focus:border-green-700 rounded-lg outline-0 px-4 w-full"
+          placeholder="#Add a title"
+        />
+        <label
+          for="content"
+          class="text-green-700 text-base sm:text-xl font-semibold"
+        >
+          Description:
+        </label>
+        <textarea
+          id="content"
+          :value="content"
+          rows="6"
+          class="border-2 p-4 w-full mb-10 rounded-lg border-gray-400 focus:border-green-700 outline-0"
+          placeholder="#Add a short description"
+        />
+      </form>
       <div class="mt-12" v-if="showComments">
         <div class="flex mt-8 sm:mt-12 items-center gap-4 sm:gap-9 mb-4">
           <span class="hidden md:flex text-green-700 text-xl"
@@ -59,7 +108,7 @@
         </div>
       </div>
     </div>
-    <div class="px-12 lg:pr-12 mt-4 rounded-lg" v-if="showCommentData">
+    <div class="px-12 lg:pr-12 mt-4 rounded-lg" v-if="showCommentData == true">
       <div class="text-base text-gray-500 sm:text-xl mb-2">Comments:</div>
       <div>
         <div
@@ -80,21 +129,30 @@
       </div>
     </div>
   </div>
-  <modal-component @close="toggleModalShow" v-if="showModal">
+  <modal-component @close="toggleModalShow" v-if="showModal == true">
     <template v-slot:title>Modal </template>
   </modal-component>
 </template>
 
 <script>
 import ModalComponent from "./ModalComponent.vue";
+import editIcon from "../assets/edit-icon.png";
+import trashIcon from "../assets/trash-icon.png";
+import saveIcon from "../assets/save-icon.png";
 export default {
   components: { ModalComponent },
-  props: ["showAttachments", "showComments"],
+  props: ["showAttachments", "showComments", "editView"],
   data() {
     return {
+      editMode: false,
+      editIcon: editIcon,
+      trashIcon: trashIcon,
+      saveIcon: saveIcon,
       showModal: false,
       showMore: false,
       showLess: false,
+      title: "Hi",
+      author: "Ishmam abid",
       content:
         "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed  quia non numquam eius modi tempora incidunt ut labore et dolore magnam  aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum  exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex  ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in  ea voluptate velit esse quam nihil molestiae consequatur, vel illum  qui dolorem eum fugiat quo voluptas nulla pariatur? Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed  quia non numquam eius modi tempora incidunt ut labore et dolore magnam  aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum  exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex  ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in  ea voluptate velit esse quam nihil molestiae consequatur, vel illum  qui dolorem eum fugiat quo voluptas nulla pariatur?",
       commentSize: 0,
@@ -146,6 +204,12 @@ export default {
     },
     toggleAttachments() {
       this.showAttachmentData = !this.showAttachmentData;
+    },
+    enableEdit() {
+      this.editMode = !this.editMode;
+    },
+    submitEditData() {
+      return true;
     },
   },
   mounted() {
