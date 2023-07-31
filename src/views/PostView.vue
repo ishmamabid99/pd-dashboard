@@ -25,13 +25,17 @@
       + Learning
     </button>
   </div>
-  <form-component />
+  <form-component v-if="selectedButton.button1" :imageUpload="true" />
+  <form-component v-else-if="selectedButton.button2" />
+  <tag-form-component v-else :tagsArray="tagsArray" />
 </template>
 
 <script>
 import FormComponent from "@/components/FormComponent.vue";
+import TagFormComponent from "@/components/TagFormComponent.vue";
+import Tags from "../../data/data";
 export default {
-  components: { FormComponent },
+  components: { FormComponent, TagFormComponent },
   data() {
     return {
       selectedButton: {
@@ -39,6 +43,7 @@ export default {
         button2: false,
         button3: false,
       },
+      tagsArray: Tags,
     };
   },
   methods: {
