@@ -48,6 +48,23 @@
           :class="showLess ? 'block' : 'hidden'"
           >show less</span
         >
+        <div class="flex flex-wrap mt-2">
+          <span
+            class="w-fit h-fit text-white text-base px-2 rounded-2xl m-1 bg-blue-800"
+            v-for="item in tagsArray"
+            :key="item.id"
+          >
+            <input
+              hidden
+              type="checkbox"
+              :value="item"
+              :id="item.id"
+            />
+            <label :for="item.id">{{
+              item.title
+            }}</label>
+          </span>
+        </div>
         <div
           @click="toggleModalShow"
           v-if="showAttachments"
@@ -139,11 +156,13 @@ import ModalComponent from "./ModalComponent.vue";
 import editIcon from "../assets/edit-icon.png";
 import trashIcon from "../assets/trash-icon.png";
 import saveIcon from "../assets/save-icon.png";
+import TagsArray from "../../data/data.js";
 export default {
   components: { ModalComponent },
   props: ["showAttachments", "showComments", "editView"],
   data() {
     return {
+      tagsArray: TagsArray,
       editMode: false,
       editIcon: editIcon,
       trashIcon: trashIcon,

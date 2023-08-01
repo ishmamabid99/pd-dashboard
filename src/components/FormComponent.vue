@@ -29,6 +29,24 @@
       class="text-green-700 text-base sm:text-xl font-semibold"
       >Select tags from below:</label
     >
+    <div class="flex flex-wrap mt-2 mb-6">
+      <span
+        class="w-fit h-fit text-white text-base px-2 rounded-2xl m-1"
+        :class="selectedTags.includes(item) ? 'bg-gray-500' : 'bg-blue-800'"
+        v-for="item in tagsArray"
+        :key="item.id"
+      >
+        <input
+          hidden
+          type="checkbox"
+          :value="item"
+          v-model="selectedTags"
+          :id="item.id"
+        />
+        <label :for="item.id" class="cursor-pointer">{{ item.title }}</label>
+      </span>
+    </div>
+
     <div id="tag-component"></div>
     <div v-if="imageUpload">
       <div>
@@ -70,10 +88,13 @@
 
 <script>
 import crossIcon from "../assets/delete_icon.svg";
+import Tags from "../../data/data.js";
 export default {
   props: ["imageUpload"],
   data() {
     return {
+      tagsArray: Tags,
+      selectedTags: [],
       icon: crossIcon,
       files: new Set(),
     };

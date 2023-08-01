@@ -156,6 +156,134 @@ let Tags = [
   },
 ];
 
+let TagsArray = [
+  {
+    title: "React",
+    id: 1,
+  },
+  {
+    title: "Vue",
+    id: 2,
+  },
+  {
+    title: "Angular",
+    id: 3,
+  },
+  {
+    title: "Svelte",
+    id: 4,
+  },
+  {
+    title: "Ember",
+    id: 5,
+  },
+  {
+    title: "Backbone",
+    id: 6,
+  },
+  {
+    title: "jQuery",
+    id: 7,
+  },
+  {
+    title: "Lodash",
+    id: 8,
+  },
+  {
+    title: "Bootstrap",
+    id: 9,
+  },
+  {
+    title: "Material-UI",
+    id: 10,
+  },
+  {
+    title: "D3.js",
+    id: 11,
+  },
+  {
+    title: "Express.js",
+    id: 12,
+  },
+  {
+    title: "Next.js",
+    id: 13,
+  },
+  {
+    title: "Redux",
+    id: 14,
+  },
+  {
+    title: "TypeScript",
+    id: 15,
+  },
+  {
+    title: "Webpack",
+    id: 16,
+  },
+  {
+    title: "GraphQL",
+    id: 17,
+  },
+  {
+    title: "Jest",
+    id: 18,
+  },
+  {
+    title: "Gatsby",
+    id: 19,
+  },
+  {
+    title: "Sass",
+    id: 20,
+  },
+  {
+    title: "Less",
+    id: 21,
+  },
+  {
+    title: "Nuxt.js",
+    id: 22,
+  },
+  {
+    title: "jQuery UI",
+    id: 23,
+  },
+  {
+    title: "Bulma",
+    id: 24,
+  },
+  {
+    title: "Chakra UI",
+    id: 25,
+  },
+  {
+    title: "Storybook",
+    id: 26,
+  },
+  {
+    title: "Framer Motion",
+    id: 27,
+  },
+  {
+    title: "Ant Design",
+    id: 28,
+  },
+  {
+    title: "Three.js",
+    id: 29,
+  },
+  {
+    title: "React Router",
+    id: 30,
+  },
+  {
+    title: "Materialize CSS",
+    id: 31,
+  },
+];
+
+
 // Add more objects as needed to make the total count 30
 
-module.exports = Tags;
+module.exports = Tags, TagsArray;
