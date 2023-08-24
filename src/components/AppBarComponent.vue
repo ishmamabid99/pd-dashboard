@@ -34,15 +34,47 @@
       </button>
     </div>
   </nav>
+  <div>
+    {{ error }}
+    {{ data }}
+    {{ loading }}
+  </div>
 </template>
 
 <script>
+import { useRequest } from "alova";
+import { getData } from "@/api/methods/auth";
 export default {
-  mounted() {},
+  data() {
+    return {
+      data: ["1"],
+      loading: true,
+      error: null,
+    };
+  },
+  async mounted() {
+    this.getReq();
+  },
   props: ["logo", "options"],
   methods: {
     handleSideBar() {
       this.$emit("showSidebar");
+    },
+    getReq() {
+      try {
+        this.data = useRequest(getData);
+      } catch (err) {
+        this.error = err;
+      }
+      console.log(this.data);
+    },
+    demoJwt() {
+      const token =
+        "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ7XCJ1c2VybmFtZVwiOlwiaXNobWFtXzEwMVwiLFwiaWRcIjo0fSIsImlhdCI6MTY5Mjg2NjU4OSwiZXhwIjoxNjkyODY3MTg5fQ.XW-6TfifuTFTNGvyZ0E9pUL_j7GhImjR2BuemXTDyG4";
+      const [, payload] = token.split(".");
+      const decodedToken = JSON.parse(atob(payload));
+      const decodedUserData = JSON.parse(decodedToken.sub);
+      return { decodedToken, decodedUserData };
     },
   },
 };
