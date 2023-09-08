@@ -58,6 +58,12 @@ export const searchAlova = createAlova({
     baseURL: BASE_URL + "/search",
     requestAdapter: GlobalFetch(),
     statesHook: VueHook,
+    beforeReques:(config)=>{
+        config.headers={
+            "Content-Type":
+            "Application/json"
+        }
+    },
     responded: (response) => {
         response.json();
     }

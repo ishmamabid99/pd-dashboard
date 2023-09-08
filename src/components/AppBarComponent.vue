@@ -43,7 +43,7 @@
 
 <script>
 import { useRequest } from "alova";
-import { getData } from "@/api/methods/auth";
+import { postSignin } from "@/api/methods/auth";
 export default {
   data() {
     return {
@@ -52,7 +52,7 @@ export default {
       error: null,
     };
   },
-  async mounted() {
+ mounted() {
     this.getReq();
   },
   props: ["logo", "options"],
@@ -62,9 +62,12 @@ export default {
     },
     getReq() {
       try {
-        this.data = useRequest(getData);
+        this.data = useRequest(postSignin);
+        console.log(this.data);
+      
       } catch (err) {
         this.error = err;
+        console.log(err)
       }
       console.log(this.data);
     },

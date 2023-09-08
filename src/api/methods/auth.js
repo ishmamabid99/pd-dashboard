@@ -1,6 +1,8 @@
 import { authAlova } from "..";
 
-export const getData = () => authAlova.POST("/signin",{
-    username:"ishmam_101",
-    password:"114354"
-})
+export const postSignin = () => authAlova.Post("/signin", {
+    data:{
+        username:"ishmam_101",
+        password:"114353"
+    }
+});
