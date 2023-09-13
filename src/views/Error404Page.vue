@@ -1,5 +1,5 @@
 <template>
-  <div class="flex mr-24 justify-center items-center h-fit">
+  <div class="flex justify-center items-center h-fit">
     <div class="error-box p-8 rounded-lg bg-gray-50 shadow-md text-center">
       <h1 class="text-4xl font-bold mb-4">Oops!</h1>
       <svg

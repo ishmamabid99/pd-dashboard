@@ -7,6 +7,7 @@ import ProfileView from '../views/ProfileView.vue'
 import BlogView from '../views/BlogView.vue'
 import Error404Page from '../views/Error404Page.vue'
 import HomeView from '../views/HomeView.vue'
+import AuthView from '../views/AuthView'
 const routes = [
   {
     path: '/',
@@ -47,6 +48,11 @@ const routes = [
     path: '/blogs',
     name: 'blogs',
     component: BlogView
+  },
+  {
+    path:"/auth",
+    name:'auth-page',
+    component:AuthView
   },
   {
     path: '/:catchAll(.*)',

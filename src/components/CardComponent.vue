@@ -147,7 +147,7 @@
     </div>
   </div>
   <modal-component @close="toggleModalShow" v-if="showModal == true">
-    <template v-slot:title>Modal </template>
+    <template v-slot:title>`Modal` </template>
   </modal-component>
 </template>
 

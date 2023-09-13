@@ -1,9 +1,9 @@
 <template>
   <app-bar-component
     @showSidebar="toggleSidebar"
-    :options="navOptions"
+    :options="isLoginPage ? null : navOptions"
     :logo="logo"
-    v-if="isRoutedPage"
+    v-if="!isRoutedPage"
   />
   <div class="flex gap-9 md:gap-16">
     <side-bar-component
@@ -11,9 +11,15 @@
       :class="sidebar ? 'block' : 'hidden'"
       class="h-96 w-fit fixed z-50 lg:block lg:mt-44"
       :options="sideBarOptions"
-      v-if="isRoutedPage"
+      v-if="!(isRoutedPage | isLoginPage)"
     />
-    <div class="w-full mt-32 lg:ml-96 lg:mr-20">
+    <div
+      :class="
+        (isRoutedPage | isLoginPage)
+          ? 'w-full mt-32'
+          : 'w-full mt-32 lg:ml-96 lg:mr-20'
+      "
+    >
       <router-view />
     </div>
   </div>
@@ -27,7 +33,7 @@ export default {
     return {
       sidebar: false,
       logo: logo,
-      navOptions: ["Login"],
+      navOptions: ["Logout"],
       sideBarOptions: [
         "Dashboard",
         "Blogs",
@@ -42,7 +48,10 @@ export default {
   components: { AppBarComponent, SideBarComponent },
   computed: {
     isRoutedPage() {
-      return this.$route.name === "error-page" ? false : true;
+      return this.$route.name === "error-page";
+    },
+    isLoginPage() {
+      return this.$route.name === "auth-page";
     },
   },
   methods: {

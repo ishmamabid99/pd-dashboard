@@ -1948,11 +1948,6 @@ ajv@^8.0.0, ajv@^8.0.1, ajv@^8.9.0:
     require-from-string "^2.0.2"
     uri-js "^4.2.2"
 
-alova@^2.11.0:
-  version "2.11.0"
-  resolved "https://registry.yarnpkg.com/alova/-/alova-2.11.0.tgz#18a474fb46b4290487210e20851bebb7489aadab"
-  integrity sha512-RAKGPddlQJP0TRaSVTOzM3MrgVQ5AJDeX/sNo8zdqB/uEaRG8q2sp3maXae0cR+FTER1cRA+P+drARDwKhhj5g==
-
 ansi-colors@^4.1.1:
   version "4.1.3"
   resolved "https://registry.yarnpkg.com/ansi-colors/-/ansi-colors-4.1.3.tgz#37611340eb2243e70cc604cad35d63270d48781b"

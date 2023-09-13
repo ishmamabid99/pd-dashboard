@@ -42,8 +42,7 @@
 </template>
 
 <script>
-import { useRequest } from "alova";
-import { postSignin } from "@/api/methods/auth";
+import { userSignin } from "@/api/methods/auth";
 export default {
   data() {
     return {
@@ -52,8 +51,8 @@ export default {
       error: null,
     };
   },
- mounted() {
-    this.getReq();
+  mounted() {
+    console.log(this.demoJwt());
   },
   props: ["logo", "options"],
   methods: {
@@ -61,15 +60,8 @@ export default {
       this.$emit("showSidebar");
     },
     getReq() {
-      try {
-        this.data = useRequest(postSignin);
-        console.log(this.data);
-      
-      } catch (err) {
-        this.error = err;
-        console.log(err)
-      }
-      console.log(this.data);
+      const data = userSignin();
+      console.log(data)
     },
     demoJwt() {
       const token =
